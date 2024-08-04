@@ -6,10 +6,12 @@
 
 ### 我是彬彬
 
-- 🐧 Web后端开发，稍会一点大数据
-- 🔭 喜欢钻研技术，终身学习者
-- 🤔 目前还很菜，将来会厉害
-- 🌱 喜欢在「<a href="https://www.yuque.com/binbintongxuezhu/oxbcl9" target="_blank">语雀</a>」上写文章
+- 🐧 曾经是 Web 后端开发，搞在线教育电商支付等等等，外加一点大数据
+- 🐢 现在在鹅厂做云上 NOSQL Redis 内核相关的研发
+- 🐖 之前是 Redis 社区成员，现在是 Valkey 社区成员
+- 🔭 喜欢钻研技术，终身学习者，梦想是躺平
+- 🤔 目前还很菜，将来会厉害（可能）
+- 🌱 喜欢在「<a href="https://www.yuque.com/binbintongxuezhu/oxbcl9" target="_blank">语雀</a>」上写文章，等以后写个书
 - 💬 未来希望能有自己的开源作品
 
 <br/>
