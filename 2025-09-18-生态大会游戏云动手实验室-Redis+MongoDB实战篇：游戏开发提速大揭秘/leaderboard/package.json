@@ -1,0 +1,12 @@
+{
+  "name": "game-leaderboard",
+  "version": "1.0.0",
+  "description": "游戏排行榜云函数",
+  "main": "index.js",
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

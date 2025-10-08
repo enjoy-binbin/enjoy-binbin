@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏装备背包</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game-container">
+    <h1 class="game-title">装备背包系统</h1>
+
+    <div class="main-content">
+        <!-- 背包区域 -->
+        <div class="inventory-section">
+            <h2>背包</h2>
+            <div class="inventory-grid" id="inventory-grid">
+                <!-- 装备格子将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 装备详情区域 -->
+        <div class="detail-section">
+            <h2>装备详情</h2>
+            <div id="item-detail" class="item-detail">
+                <p class="no-selection">点击装备查看详情</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="controls">
+        <button class="btn btn-primary" onclick="initSampleData()">初始化示例数据</button>
+        <button class="btn btn-danger" onclick="deleteSampleData()">清空示例数据</button>
+        <button class="btn btn-success" onclick="showCreateItemModal()">创建新装备</button>
+    </div>
+</div>
+
+<!-- 创建装备模态框 -->
+<div id="create-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>创建新装备</h3>
+        <form id="create-item-form">
+            <input type="text" id="item-name" placeholder="装备名称" required>
+            <select id="item-type" required>
+                <option value="">选择类型</option>
+                <option value="weapon">武器</option>
+                <option value="armor">护甲</option>
+                <option value="accessory">饰品</option>
+            </select>
+            <select id="item-rarity" required>
+                <option value="">选择稀有度</option>
+                <option value="common">普通</option>
+                <option value="rare">稀有</option>
+                <option value="epic">史诗</option>
+                <option value="legendary">传说</option>
+            </select>
+            <input type="number" id="item-level" placeholder="等级" min="1" max="100" required>
+            <button type="submit" class="btn btn-primary">创建</button>
+        </form>
+    </div>
+</div>
+
+<!-- 确认对话框 -->
+<div id="confirm-dialog" class="modal">
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <h3 id="dialog-title">确认操作</h3>
+        </div>
+        <div class="dialog-body">
+            <p id="dialog-message"></p>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-danger" onclick="confirmAction()">确认</button>
+            <button class="btn btn-secondary" onclick="cancelAction()">取消</button>
+        </div>
+    </div>
+</div>
+
+<!-- 附魔对话框 -->
+<div id="enchant-dialog" class="modal">
+    <div class="enchant-content">
+        <div class="enchant-header">
+            <h3>装备附魔</h3>
+            <span class="close" onclick="closeEnchantDialog()">&times;</span>
+        </div>
+        <div class="enchant-body">
+            <div class="enchant-item-preview">
+                <h4 id="enchant-item-name"></h4>
+                <p id="enchant-item-type"></p>
+            </div>
+            <div class="enchant-animation" id="enchant-animation">
+                <div class="magic-circle"></div>
+                <div class="enchant-particles"></div>
+            </div>
+            <div class="enchant-result" id="enchant-result">
+                <!-- 附魔结果将显示在这里 -->
+            </div>
+        </div>
+        <div class="enchant-footer">
+            <button class="btn btn-primary" id="enchant-btn" onclick="performEnchantment()">
+                <span class="enchant-icon">✨</span> 开始附魔
+            </button>
+            <button class="btn btn-secondary" onclick="closeEnchantDialog()">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 通知容器 -->
+<div id="notification-container" class="notification-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #1a1a2e, #0f0f1e);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #4a4a6a;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.game-title {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.main-content {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+/* 背包样式 */
+.inventory-section {
+    flex: 1;
+}
+
+.inventory-section h2,
+.detail-section h2 {
+    color: #87ceeb;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: 2px solid #4a4a6a;
+    border-radius: 5px;
+}
+
+.inventory-slot {
+    width: 60px;
+    height: 60px;
+    background: rgba(30, 30, 40, 0.8);
+    border: 2px solid #3a3a4a;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.inventory-slot:hover {
+    border-color: #87ceeb;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+}
+
+.inventory-slot.occupied {
+    background: rgba(40, 40, 50, 0.9);
+}
+
+.item-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    position: relative;
+}
+
+.item-level {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 12px;
+    color: #ffd700;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* 装备详情样式 */
+.detail-section {
+    width: 350px;
+}
+
+.item-detail {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #4a4a6a;
+    border-radius: 5px;
+    padding: 20px;
+    min-height: 400px;
+}
+
+.item-detail h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.item-type {
+    color: #87ceeb;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.stats-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.stats-list li {
+    margin: 8px 0;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.stat-name {
+    color: #87ceeb;
+}
+
+.stat-value {
+    color: #ffd700;
+    float: right;
+}
+
+.special-effect {
+    background: rgba(255, 140, 0, 0.1);
+    border: 1px solid #ff8c00;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.special-effect h4 {
+    color: #ff8c00;
+    margin-bottom: 5px;
+}
+
+.no-selection {
+    color: #666;
+    text-align: center;
+    margin-top: 150px;
+}
+
+/* 控制按钮 */
+.controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #4169e1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1e90ff;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    background: #32cd32;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #00ff00;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background: #dc143c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #ff0000;
+    transform: scale(1.05);
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #2a2a3a;
+    margin: 10% auto;
+    padding: 20px;
+    border: 2px solid #4a4a6a;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+#create-item-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#create-item-form input,
+#create-item-form select {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #4a4a6a;
+    border-radius: 5px;
+    color: white;
+}
+
+/* 稀有度颜色 */
+.rarity-common { color: #808080 !important; }
+.rarity-rare { color: #0066cc !important; }
+.rarity-epic { color: #9932cc !important; }
+.rarity-legendary { color: #ff8c00 !important; }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .detail-section {
+        width: 100%;
+    }
+    
+    .inventory-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* 确认对话框样式 */
+.dialog-content {
+    background-color: #2a2a3a;
+    margin: 20% auto;
+    padding: 0;
+    border: 2px solid #4a4a6a;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    animation: dialogSlideIn 0.3s ease-out;
+}
+
+@keyframes dialogSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.dialog-header {
+    background: linear-gradient(to right, #dc143c, #8b0000);
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.dialog-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.dialog-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.dialog-body p {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.dialog-footer {
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #4a4a6a;
+}
+
+/* 附魔对话框样式 */
+.enchant-content {
+    background-color: #1a1a2e;
+    margin: 10% auto;
+    padding: 0;
+    border: 2px solid #6a4a8a;
+    border-radius: 15px;
+    width: 500px;
+    box-shadow: 0 0 30px rgba(106, 74, 138, 0.8);
+    animation: enchantGlow 2s ease-in-out infinite;
+}
+
+@keyframes enchantGlow {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(106, 74, 138, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(147, 50, 204, 1);
+    }
+}
+
+.enchant-header {
+    background: linear-gradient(to right, #9932cc, #6a4a8a);
+    padding: 15px 20px;
+    border-radius: 13px 13px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enchant-header h3 {
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.enchant-body {
+    padding: 20px;
+    min-height: 300px;
+}
+
+.enchant-item-preview {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.enchant-item-preview h4 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+
+.enchant-animation {
+    position: relative;
+    height: 150px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.magic-circle {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #9932cc;
+    border-radius: 50%;
+    animation: rotate 2s linear infinite;
+    box-shadow: 0 0 20px #9932cc;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.enchant-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, #9932cc 1px, transparent 1px),
+        radial-gradient(circle, #ff8c00 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    animation: particleFloat 3s linear infinite;
+}
+
+@keyframes particleFloat {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+}
+
+.enchant-result {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.enchant-success {
+    color: #6bcf7f;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(107, 207, 127, 0.8);
+    animation: successPulse 0.5s ease-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.enchant-stat {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.enchant-footer {
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #6a4a8a;
+}
+
+.enchant-icon {
+    margin-right: 5px;
+}
+
+.btn-secondary {
+    background: #666;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #888;
+}
+
+/* 通知系统样式 */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.notification {
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    min-width: 300px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: notificationSlideIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@keyframes notificationSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification.success {
+    border-left: 4px solid #6bcf7f;
+}
+
+.notification.error {
+    border-left: 4px solid #dc143c;
+}
+
+.notification.info {
+    border-left: 4px solid #4169e1;
+}
+
+.notification.warning {
+    border-left: 4px solid #ffd93d;
+}
+
+.notification-icon {
+    font-size: 24px;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.notification-close {
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.notification-close:hover {
+    color: #fff;
+}
+
+/* 附魔品质颜色 */
+.enchant-quality-perfect {
+    color: #ff6b6b !important;
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.8);
+}
+
+.enchant-quality-excellent {
+    color: #ffd93d !important;
+    text-shadow: 0 0 5px rgba(255, 217, 61, 0.8);
+}
+
+.enchant-quality-normal {
+    color: #6bcf7f !important;
+    text-shadow: 0 0 5px rgba(107, 207, 127, 0.8);
+}

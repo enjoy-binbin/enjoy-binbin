@@ -1,0 +1,19 @@
+{
+  "name": "game-inventory-cloud-function",
+  "version": "1.0.0",
+  "description": "游戏装备管理云函数",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "~6.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
+

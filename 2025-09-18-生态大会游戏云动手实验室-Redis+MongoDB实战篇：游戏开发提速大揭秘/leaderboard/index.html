@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速竞技场 - 全球排行榜</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景动画 -->
+    <div class="background">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+ 
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1 class="title">
+                <span class="title-main">极速竞技场</span>
+                <span class="title-sub">GLOBAL LEADERBOARD</span>
+            </h1>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">玩家总数</span>
+                    <span class="stat-value" id="totalPlayers">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">实时更新</span>
+                    <span class="stat-value pulse" id="updateStatus">●</span>
+                </div>
+            </div>
+        </header>
+ 
+        <!-- 控制面板 -->
+        <div class="control-panel">
+            <!-- 查询区域 -->
+            <div class="control-section">
+                <h3 class="section-title">查询玩家</h3>
+                <div class="input-group">
+                    <input type="text" id="searchInput" placeholder="输入玩家名称..." class="neon-input">
+                    <button onclick="searchPlayer()" class="btn btn-search">
+                        <span class="btn-icon">🔍</span>
+                        查询
+                    </button>
+                </div>
+                <div id="searchResult" class="search-result"></div>
+            </div>
+ 
+            <!-- 添加玩家区域 -->
+            <div class="control-section">
+                <h3 class="section-title">添加玩家</h3>
+                <div class="input-group">
+                    <input type="text" id="newPlayerName" placeholder="玩家名称" class="neon-input">
+                    <input type="number" id="newPlayerScore" placeholder="分数" class="neon-input" min="0">
+                    <button onclick="addPlayer()" class="btn btn-add">
+                        <span class="btn-icon">➕</span>
+                        添加
+                    </button>
+                </div>
+            </div>
+ 
+            <!-- 管理操作区域 -->
+            <div class="control-section">
+                <h3 class="section-title">管理操作</h3>
+                <div class="button-group">
+                    <button onclick="generateTestData()" class="btn btn-generate">
+                        <span class="btn-icon">🎲</span>
+                        生成测试数据
+                    </button>
+                    <button onclick="startMassiveImport()" class="btn btn-massive" id="massiveImportBtn">
+                        <span class="btn-icon">🚀</span>
+                        插入100万数据
+                    </button>
+                    <button onclick="confirmClearLeaderboard()" class="btn btn-clear">
+                        <span class="btn-icon">🗑️</span>
+                        清空排行榜
+                    </button>
+                </div>
+                <div id="importProgress" class="import-progress" style="display: none;">
+                    <div class="progress-info">
+                        <span>导入进度：</span>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span>已导入：<span id="importedCount">0</span></span>
+                        <span>速度：<span id="importSpeed">0</span>/秒</span>
+                        <span>剩余时间：<span id="remainingTime">--</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- 排行榜主体 -->
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <h2 class="leaderboard-title">
+                    <span class="crown">👑</span>
+                    全球排行榜 TOP 30
+                    <span class="crown">👑</span>
+                </h2>
+            </div>
+            
+            <div class="leaderboard" id="leaderboard">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <span>加载中...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- 确认对话框 -->
+    <div id="confirmDialog" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-title">确认操作</h3>
+            <p class="modal-message" id="confirmMessage">确定要执行此操作吗？</p>
+            <div class="modal-buttons">
+                <button onclick="confirmAction()" class="btn btn-confirm">确定</button>
+                <button onclick="cancelAction()" class="btn btn-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- 通知容器 -->
+    <div id="notificationContainer" class="notification-container"></div>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
