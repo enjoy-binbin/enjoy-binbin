@@ -13,6 +13,7 @@
 - 🤔 目前还很菜，将来会厉害（可能）
 - 🌱 喜欢在「<a href="https://www.yuque.com/binbintongxuezhu/oxbcl9" target="_blank">语雀</a>」上写文章，等以后写个书
 - 💬 未来希望能有自己的开源作品
+- 📚 个人做的技术分享的 PPT/PDF 会放在「<a href="https://github.com/enjoy-binbin/enjoy-binbin" target="_blank">个人仓库</a>」上，欢迎留言或讨论
 
 <br/>
 <img src="https://github-profile-trophy.vercel.app/?username=liyupi&theme=flat&column=7" alt="logo" align="center" style="margin: auto;"/>
